@@ -1,0 +1,61 @@
+La herencia en programación orientada a objetos, nos permite tener clases que extiendan de otras, heredando así sus propiedades y métodos no privados. En teoría esto puede sonar complicado, pero en la práctica es muy sencillo como vamos a aprender en la clase de hoy.
+
+Notas
+Recuerda que una clase puede heredar de otra usando la palabra reservada extends para heredar de una clase:
+
+class Child extends Parents {
+  //
+}
+Una clase Padre solo puede heredar sus variables y métodos con visibilidad publica (public) o protegida (protected) y no privada (private) esto lo veremos con más calma más adelante.
+
+class Parents {
+    protected $foo;
+    protected function bar()
+    {
+     //
+    }
+    public function diplay()
+    {
+     //
+    }
+}
+ 
+
+Para crear una clase Abstracta debes de utilizar la palabra reservada abstract antes de la palabra class
+
+abstract class Parents {
+    //
+}
+Una clase abstracta solo puede heredar sus variables y métodos con visibilidad publica (public) o protegida (protected) ademas de sus métodos abstractos(abstract).
+
+abstract class Parents {
+    abstract protected function foo()
+    {
+     //
+    }
+    abstract public function bar()
+    {
+     //
+    }
+}
+Las clases que heredan de otra clase pueden cambiar el comportamiento de la clase padre sobreescribiendo sus métodos
+
+class Parents {
+    public function say()
+    {
+      echo 'Hola!';
+    }
+}
+class Child extends Parents {
+    public function say()
+    {
+      echo 'Hola Mundo!';
+    }
+}
+$child = new Child();
+$child->say(); // Hola mundo;
+Finalmente hay que acotar que PHP no permite la herencia multiple, es decir que no puedes utilizar extends de la siguiente forma:
+
+class Chind extends Parent, Other {
+    //Esto no es válido!!!!
+}

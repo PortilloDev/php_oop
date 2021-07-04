@@ -1,0 +1,72 @@
+Interacción entre objetos
+
+Una característica muy importante de la programación orientada a objetos es la capacidad que los objetos tienen para interactuar con otros. En programación estructurada nuestro código se lee de arriba hacia abajo y escribimos procedimientos de hasta cientos de líneas. En OOP dividimos las responsabilidades de un procedimiento en pequeñas clases y métodos y logramos que un método interactue con otros. 
+De esta manera aunque ya no será posible leer nuestro código en línea recta, podremos hacer cambios más fácilmente en el sistema, escribir pruebas, reusar código, etc.
+
+Ahora bien aunque hayas aprendido a declarar clases y métodos, es muy posible que sigas teniendo el paradigma de la programación estructurada por mucho tiempo y que cometas ciertos errores que afecten la calidad de tu proyecto y no te permitan aprovechar los beneficios de la OOP, es por ello que en esta clase te enseñaré cómo puedes diseñar tus métodos para lograr una interacción correcta entre objetos, siguiendo el principio «tell, don’t ask». Además aprenderemos sobre la declaración de tipos en PHP y veremos un repaso de herencia, getters y setters.
+
+Al declarar los argumentos de un método de una clase podemos declarar el tipo de argumento que acepta. De esta manera facilita el momento de depuración saber si no se están enviando al método los argumentos correctos. Como por ejemplo, declaramos que el método attack solo puede recibir como argumento un objeto tipo Unit, es decir, un Soldier o Archer solo puede atacar a oponentes que sean unidades.
+
+public function attack(Unit $opponent){
+}
+En la lección Encapsulamiento, getters y setters en PHP vimos cómo crear getters y setters para una propiedad de una clase.  Para esta lección encapsulamos la cantidad de punto de vida (hp) de una unidad y solo podremos acceder a ella por los métodos getHp y setHp.
+
+Principio Tell don’t ask
+Este principio nos dice que en vez de pedirle a un objeto información sobre sus datos y luego con ellos tomar decisiones que alteren el mismo objeto como por ejemplo:
+
+<?php
+class Board
+{
+    public function closeTask($task)
+    {
+        if ($task->isDone()) {
+            $task->setStatus('ready');
+        }
+    }
+}
+Lo mejor es decirle al objeto lo que quieres que haga, y dejar que sea responsabilidad del propio objeto cambiar su estado. Por ejemplo, podemos reescribir el método de esta forma:
+
+<?php
+class Board
+{
+    public function closeTask(Task $task)
+    {
+        $task->close();
+    }
+}
+class Task
+{
+    public function close()
+    {
+        if ($this->isDone()) {
+            $this->setStatus('ready');
+        }
+    }
+    public function isDone()
+    {
+        //...
+    }
+    protected function setStatus($status)
+    {
+        //...
+    }
+}
+Con ello desde Board se está solicitando cerrar una tarea en vez de preguntar si la tarea está hecha para luego cambiar su estado.
+
+En la lección Herencia y abstracción con PHP vimos que una subclase puede modificar el comportamiento de un método de la clase padre pero también podemos usar la palabra clave de PHP parent y el operador de resolución de ámbito :: para llamar el método de la clase padre dentro de la subclase:
+
+class Person
+{    
+    public function wearing($color)
+    {
+        echo "{$this->name} is wearing a t-shirt $color";
+    }
+}
+class Student extends Person
+{    
+    public function wearing($color)
+    {
+        parent::wearing($color);
+        echo " and blue pants.";
+    }
+}

@@ -1,0 +1,12 @@
+Hoy vamos a hablar sobre uno de los objetivos más importantes de la Programación Orientada a Objetos, el cuál es poder proteger y ocultar información, a dicho proceso se le denomina encapsulamiento.
+
+El encapsulamiento de datos previene que el desarrollador haga cambios inesperados al sistema, como también ocultar la información para que no pueda ser modificada o vista por otras clases y esto es muy útil pero además fácil de hacer, como aprenderemos en la lección de hoy.
+
+
+¿Cómo accedemos a dicha información de forma segura? En el desarrollo de esta clase vamos a explicarte cómo podemos modificar de forma segura las propiedades (o variables) de una clase y cómo podemos presentar dicha información al usuario de una forma correcta con el uso de métodos conocidos como Setters y Getters.
+
+Recuerda tener siempre en cuenta:
+
+Getter:  Su función es permitir el obtener el valor de una propiedad de la clase y así poder utilizar dicho valor en diferentes métodos.
+
+Setter:  Su función permite brindar acceso a propiedades especificas para poder asignar un  valor fuera de la clase.

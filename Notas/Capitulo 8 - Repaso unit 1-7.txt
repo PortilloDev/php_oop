@@ -1,0 +1,19 @@
+Repaso de lo aprendido hasta ahora
+
+
+Herencia: 
+Cuando trabajamos con herencia algunas veces notaremos que un método pertenece a una clase padre o por el contrario no pertenece a la clase padre sino a la clase hija. Una manera sencilla de deducir esto es preguntarte ¿Esta funcionalidad la necesitan todas las clases que heredan de ___ o sólo una clase puntual? Si la respuesta es todas o la mayoría, puedes colocar la funcionalidad en la clase padre, de lo contrario sitúala en la clase hija. Aunque a veces no necesitamos herencia en lo absoluto sino composición.
+
+Inyección de dependencias:
+Con la inyección de dependencias podemos «componer» un objeto (en nuestro ejemplo una unidad) para que aún siendo de la misma clase Unit pueda tener características totalmente diferentes (en nuestro ejemplo armas o armaduras distintas). Este concepto lo seguiremos viendo más adelante.
+
+Constructores y setters: podemos pasar dependencias (objetos) u otros valores a un objeto a través de su constructor o a través de métodos setters.
+
+Refactorización:
+Es el término que usamos cuando cambiamos código para que mantenga la misma funcionalidad pero esté más ordenado, sea más fácil de entender, mantener y extender.
+
+Métodos VS propiedades:
+Recuerda que las propiedades nos dan sólo un valor, mientras que con el método podemos encapsular comportamiento.
+
+Clases abstractas VS Interfaces:
+Con ambas podemos forzar que las clases que extiendan de la clase abstracta o implementen de la interfaz cumplan con un «contrato». La diferencia es que las clases abstractas nos permiten agregar funcionalidad extra (porque es una clase padre) y las interfaces sólo representan un contrato. Algunas veces nos daremos cuenta que necesitamos una en vez de la otra, como veremos en una lección más adelante

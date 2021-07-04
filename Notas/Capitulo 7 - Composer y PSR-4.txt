@@ -1,0 +1,5 @@
+Autocarga de clases con Composer y PSR-4
+
+Hace unos años, cada framework de PHP utilizaba las capacidades de auto-carga de PHP de forma diferente. Esto llevaba a inconsistencias y a que resultara realmente difícil combinar unos componentes o paquetes de PHP con otros. Afortunadamente hoy tenemos la recomendación de estándar PSR-4 y además el manejador de dependencia Composer que también se encarga de autocargar nuestras clases, y esto es lo que veremos en la clase de hoy.
+
+

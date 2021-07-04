@@ -1,0 +1,19 @@
+{
+    "name": "ivan/oop",
+    "description": "Demo project for the object-oriented-programming course",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Portillo",
+            "email": "ipp@hotmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "files":["src/Helpers.php"],
+        "psr-4": {
+            "Styde\\":"src/"
+        }
+    }
+}

@@ -1,0 +1,80 @@
+¿Que es un objeto?
+
+Pensar en objetos es muy parecido a como vemos el mundo, si observamos a nuestro alrededor todo esta compuesto por objetos, sea una casa, un carro, una hoja, etc. Cada objeto está compuesto por dos cosas fundamentalmente, sus propiedades y sus comportamientos. Por ejemplo, podemos decir que un Teléfono tiene propiedades como color, modelo o compañía telefónica, y tiene comportamientos como realizar llamadas, envío de mensajes de texto, entre otros. Podemos utilizar esto como base para la Programación Orientada a Objetos, transformando un elemento de la vida real en elementos utilizables dentro de la programación.
+
+Como ya es sabido, un objeto aunque sea el mismo, puede tener distintos comportamientos o propiedades, continuando con el ejemplo anterior, el objeto puede ser un Teléfono, pero existen una gran cantidad de teléfonos de muchas marcas, colores, tamaños y características que lo hacen distinto a los demás, esto define lo que es la identidad del objeto, porque aunque comparten características similares, como las llamadas, encendido, apagado, entre otros, cada uno tiene algo que lo hace diferente.
+
+Los objetos dentro de la programación son muy parecidos a la realidad. Pues que un objeto en programación tiene propiedades (o también llamados atributos) y comportamientos (que serían las funciones también llamadas métodos).
+
+Las Clases
+
+Podemos ver las clases como una abstracción de un elemento de la vida real para transformarlos en elementos utilizables dentro de la programación. Las clases están conformadas tanto por propiedades (que son como variables dentro de la clase) como por métodos (que son como funciones dentro de la clase).
+
+Como se menciono anteriormente, las propiedades las podemos comparar con las variables dentro de la clase, en el ejemplo del vídeo tenemos como propiedades de la Clase Persona el nombre y el apellido
+
+var $firstName, $lastName;
+Un método es una acción realizada por un objeto, estos están definidos como las funciones de la clase. Por ejemplo el método fullName me retorna el nombre completo de una Persona.
+
+function fullName()
+{
+    return $this->firstName . ' ' . $this->lastName;
+}
+Se puede decir que las clases son solo plantillas cuyos métodos o acciones no serán ejecutados en tanto no exista un objeto que requiera su aplicación.
+
+Para crear una nueva instancia de un objeto tenemos la palabra reservada new:
+
+$person1 = new Person('Duilio','Palacios');
+Ahora veamos que funcion cumple el método constructor:
+
+function __construct($firstName, $lastName)
+{
+    $this->firstName = $firstName;
+    $this->lastName  = $lastName;
+}
+Dentro del código de un constructor se suelen asignar los valores de algunas o todas las propiedades de dicho objeto, para conseguir que el objeto sea creado con valores iniciales. Por ende, un método constructor se ejecuta cada vez que se instancia la clase. No es de carácter obligatorio contar con uno, pero suelen ser bastante útiles. En nuestro ejemplo, cuando se inicia un objeto del tipo Persona va asignar a las propiedades $firstName y $lastName con los datos que coloquemos cuando instanciamos nuestro objeto.
+
+$person1 = new Person('Duilio', 'Palacios');
+Para asignar valores o referirnos a la propiedad dentro de una clase se utiliza $this, por ejemplo si utilizamos $this->firstName nos referimos a la variable dentro de nuestra clase Persona.
+
+Cada vez que se instancia una clase se crea un objeto nuevo:
+
+$person2 = new Person('Ramon', 'Lapenta');
+Con esto creamos dos objetos del tipo persona, y cada uno tiene su propio nombre y apellido. De esta manera podemos evitar la repetición de código.
+
+Se puede acceder a los métodos de manera muy fácil, se utiliza la fecha (->) la cual  nos permite acceder a las propiedades o métodos de nuestra Clase.
+
+echo "{$person1->fullName()} es amigo de {$person2->fullName()}";
+Ejemplo
+Hagamos un ejercicio con un Teléfono, que en este caso sería el objeto de la clase, algunas de las características pueden ser modelo, color y compañía, por otro lado dentro de sus funciones tenemos realizar llamadas y enviar mensajes. Partiendo de eso, podemos crear nuestro objeto:
+
+/**
+ * Clase Telefono
+ */
+class Phone
+{
+    var $model;
+    var $color;
+    var $company;
+    function __construct($model, $color, $company)
+    {
+        $this->model   = $model;
+        $this->color   = $color;
+        $this->company = $company;
+    }
+    function call()
+    {
+        return 'Estoy llamando a otro móvil';
+    }
+    function sms()
+    {
+        return "Estoy enviando un mensaje de texto";
+    }
+}
+$nokia = new Phone('Nokia', 'Blanco', 'Movistar');
+Como se pudo observar, las características son parte de las propiedades del objeto, definidas en variables, y las funciones son las acciones o métodos que dicho objeto puede realizar. Tenemos que utilizar el símbolo -> para interactuar con dichas propiedades y métodos:
+
+echo $nokia->call(); // Estoy llamando a otro móvil
+echo $nokia->color; // Imprimirá Blanco
+Ejercicios Propuestos
+Realiza una definición de algún objeto de tu preferencia, por ejemplo: Un carro. Tengo un Toyota de color rojo, con cuatro puertas el cual puede acelerar y tocar la bocina.
+A partir del ejercicio anterior, procede a crear una Clase con las propiedades y los métodos que consideres que estén dentro de tu definición.

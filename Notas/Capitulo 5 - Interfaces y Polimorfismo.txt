@@ -1,0 +1,41 @@
+Interfaces y Polimorfismo
+
+La palabra polimorfismo significa «múltiples formas» y en programación orientada a objetos puede tener varios significados, por ejemplo la habilidad que tiene un método dentro de un objeto con interactuar con diferentes objetos de diferentes clases de la misma forma pero con resultados diferentes. Esto se logra cuando creamos clases que tienen la misma interfaz (es decir los mismos métodos públicos) pero se comportan de manera diferente.
+
+En teoría suena complicado pero con los ejemplos del siguiente video lo aprenderás de manera muy sencilla:
+
+Notas
+El polimorfismo es la habilidad de tomar multiples formas: imagina que tienes una Factura y la factura requiere ser impresa como PDF, HTML o como texto plano. Quienes no comprenden estos conceptos suelen hacer esto:
+
+<?php
+class Invoice {}
+class HtmlInvoice extends Invoice {}
+class PdfInvoice extends Invoice {} 
+class TextInvoice extends Invoice {}
+Pero ¿Qué sucede si tenemos por ejemplo facturas para pago recurrente, para compra de un solo producto, multiples productos, pagos a contados, pagos a crédito? No podemos seguir abusando de la herencia:
+
+<?php
+class RecurrentPaymentInvoice extends PdfInvoice {} //Esto ya es abuso de herencia y no tiene sentido
+Aquí lo mejor es que una factura sea una sola clase:
+
+class Invoice y la funcionalidad que pueda cambiar (tomar multiples formas, es decir, polimórfica) se exprese como interfaces que puedan ser: implementadas en clases concretas, instanciadas e inyectadas a la clase, como piezas de lego o de un automóvil que puedas reemplazar:
+
+<?php
+interface ReportFormat {}
+interface InvoiceType {}
+interface PaymentType {}
+Con esto ya es posible crear clases puntuales (para reportes, tipos de pago, tipos de factura, incluso tipo de cliente, etc.) que ya no extenderán de Invoice sino que implementarán una interfaz específica:
+
+<?php
+class HtmlReportFormat implements ReportFormat
+Ahora si quieres una factura para pagos recurrentes, a crédito y en HTML ya no tienes que enredarte con una herencia interminable ni repetir código, sino simplemente componerla, por ejemplo de la siguiente forma (o usando el patrón factory que verás más adelante):
+
+<?php
+$invoice = new Invoice(new RecurrentInvoice(Type::Monthly), new CreditPayment(Carbon::format('3 days'));
+$invoice->reportWith(new HtmlReport()); //o: new HtmlReport($invoice);
+Advertencia: todo esto es un ejemplo inventado que podría adaptarse o no a un caso real, queda de parte de cada desarrollador hacer el análisis correspondiente a cada problema específico.
+
+Diferencia entre clases abstractas e interfaces
+La interfaz es sólo un «contrato» que no contiene código. Como has podido ver en el video en la interfaz sólo se define el encabezado de los métodos que deben ser implementados por la clase que implemente dicha interfaz.
+
+Una clase abstracta por el contrario es algo intermedio entre una clase y una interfaz: dado que también contiene un «contracto» en este caso métodos abstractos que deben ser implementados por la clase hija, pero también contiene métodos concretos con código. Más adelante veremos más ejemplos de uso de clases abstractas.

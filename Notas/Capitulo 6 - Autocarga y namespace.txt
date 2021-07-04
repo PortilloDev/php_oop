@@ -1,0 +1,48 @@
+Autocarga de clases y nombres de espacio con php 
+
+Tan importante como aplicar buenas prácticas y patrones de diseño en nuestro código, es organizarlo en archivos de forma coherente. El estándar en PHP es crear un archivo por clases y luego utilizar una función de autocarga (autoload) para cargar dichas clases. Además de ver esto en la lección de hoy, aprenderás qué son los nombres de espacio (namespaces), cómo usarlos y porqué son importantes.
+
+Para organizar las clases creamos un archivo por cada una.  Estos deben llevar el mismo nombre de la clase, siguiendo el estándar de PHP PSR-1.
+
+En un proyecto de PHP podemos tener inicialmente dos directorios: src/ y vendor/
+
+src/ es el directorio que contiene todos los archivos fuentes con los cuales se construye el proyecto, tales como archivos de clases, funciones helpers, etc. Se llama src por ser la abreviación de source. En algunos casos también puede llamarse lib/ o app/, éste último como lo usa Laravel.
+
+vendor/ es el directorio para almacenar todos los archivos que son código de terceros como por ejemplo clases, componentes o framework que no han sido desarrollados por el programador pero que están siendo usados en el proyecto.
+
+Autocarga de clases
+Al tener las clases distribuidas en archivos podemos usar la sentencia de PHP require para incluir cada archivo en específico cuando lo necesitemos. Sin embargo, se puede convertir en un trabajo tedioso cargar manualmente cada clase así que también podemos usar la función de PHP spl_autoload_register para hacer la carga automática o autocarga de clases:
+
+spl_autoload_register(function ($className) {
+    require "src/$className.php";
+});
+spl_autoload_register tiene como argumento una función anónima que recibe como parámetro el nombre de la clase a cargar. Esta función se encarga de cargar las clases utilizadas, es decir, en nuestro código cada vez que se intente usar una clase y ésta no exista se llamará a la función spl_autoload_register pasándose el nombre de la clase para cargarla.  De esta manera, se simplifica el código al no tener que cargar manualmente cada clase y además se cargan las que realmente se estén necesitando.
+
+Es importante que tengas ordenadas las clases con alguna convención de nombre estándar para que se puedan cargar correctamente.
+
+Espacio de nombres (namespaces)
+Un espacio de nombres de PHP proporciona una manera para agrupar clases, interfaces, funciones y constantes relacionadas.  Es un contenedor abstracto donde los elementos que están dentro de él deben tener nombres únicos.
+
+Para declarar un namespace, éste se agrega al principio del archivo antes de cualquier otro código como por ejemplo:
+
+<?php
+namespace MyProject;
+class MyClass {
+}
+Los espacios de nombres son útiles para evitar colisiones de nombres entre las clases (abstractas y traits), funciones, interfaces y constantes creadas para el proyecto y las clases, funciones, interfaces, etc. de terceros o del mismo proyecto.  Esto último a través de subespacios de nombres o subnamespaces que nos permiten definir una jerarquía. Para ello se usa una barra invertida \ como por ejemplo:
+
+<?php
+namespace MyProject\Admin;
+class MyClass {
+}
+De esta manera, a pesar que las dos clases con nombres iguales están dentro del mismo proyecto no hay conflicto pues pertenecen a nombres de espacio diferentes, por tanto MyProject\MyClass y MyProject\Admin\MyClass son clases diferentes.
+
+Para hacer referencia a una clase que se encuentre en un nombre de espacio diferente podemos usar la palabra reservada use:
+
+<?php
+namespace NombreDeEspacio;
+use OtroNombreDeEspacio\OtraClase;
+class MiClase
+{
+   //...
+}
