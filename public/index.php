@@ -5,15 +5,13 @@ namespace Styde;
 require '../vendor/autoload.php';
 
 
+$deadpool = new Unit('DeadPool', new Weapons\BasicSword);
 
-$armor = new Armors\BronzeArmor();
-$deadpool = new Soldier('DeadPool');
-$ramm = new Archer("Ramm");
-//$deadpool->move('el norte');
+$deadpool->setArmor(new Armors\BronzeArmor());
+
+$ramm = new Unit("Ramm", new Weapons\FireBow());
 
 $ramm->attack($deadpool);
-
-$deadpool->setArmor(new Armors\CursedArmor);
 
 $ramm->attack($deadpool);
 

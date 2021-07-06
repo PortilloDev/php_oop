@@ -1,0 +1,24 @@
+Patrón Factory y Value Objects
+
+En la lección de hoy vamos a aprender sobre un par de patrones de la programación orientada a objetos como lo son Factory y Value Object. También aprenderemos que muchas veces podemos aplicar refactorización de nuestro código para simplificarlo en vez de hacerlo más complejo.
+
+Patrón Factory
+En OOP, factory se refiere a un objeto o método que tiene por objetivo crear o instancias otros objetos.
+
+Esto es una buena práctica y no debe confundirse con el abuso del operador new dentro de clases. Más sobre el tema en nuestro curso avanzado de creación de componentes con PHP.
+
+Value Objects
+Los value objects nos permiten agrupar grupos de valores que tienen sentido juntos pero no tienen sentido separados. Por ejemplo:
+
+Dinero: new Money(50, 'USD'); // cantidad y tipo de moneda
+Coordenadas: new Coordinates('38.898648N', '77.037692W'); // latitud y longitud
+Fecha: new Date(2016, 07, 21); //año, mes, día
+Entre muchos otros.
+Refactorización
+Como habrás notado en esta lección, refactorizar no significa complicar el código, sino adaptarlo a la lógica y requerimientos de nuestra aplicación, y esto implica muchas veces simplificar el código, por ejemplo los cambios en la forma como manejamos las dependencias a través de polimorfismo para las armas y armaduras de nuestro juego de ejemplo hizo innecesaria la herencia en la clase Unit y este tipo de cambios sucede también muy a menudo en aplicaciones reales.
+
+Al refactorizar tu código debes ser muy cuidadoso con no romper la funcionalidad existente de tu aplicación, por ejemplo si estás eliminando una jerarquía asegúrate de reemplazar las subclases en otras partes de tu app y de que realmente no son necesarias, etc. Este tema lo veremos más adelante en uno nuevo curso de refactorización.
+
+***
+
+En la lección siguiente aprenderemos cómo utilizando OOP podemos reducir la cantidad de código estructurado (como condicionales y sentencias switch) de nuestra aplicación.

@@ -1,38 +1,58 @@
 <?php
+
 namespace Styde;
 
 
-abstract class Unit
+class Unit
 {
     protected $hp = 40;
     protected $name;
+    protected $armor;
+    protected $weapon;
 
-
-    public function __construct($name)
+    public function __construct($name, Weapon $weapon)
     {
         $this->name = $name;
+        $this->weapon = $weapon;
     }
 
+    public function setWeapon(Weapon $weapon)
+    {
+        $this->weapon = $weapon;
+    }
+
+    public function setArmor(Armor $armor = null)
+    {
+        $this->armor = $armor;
+    }
 
     public function getHp()
     {
         return $this->hp;
     }
+
     public function getName()
     {
         return $this->name;
     }
+
     public function move($direction)
     {
         show("{$this->name} avanza hacia $direction");
     }
 
-    abstract public function attack(Unit $opponent);
+    public function attack(Unit $opponent)
+    {
+        $attack = $this->weapon->createAttack();
+        show($attack->getDescription($this, $opponent));
+        $opponent->takeDamage($attack);
+    }
 
-    public function takeDamage($damage)
+
+    public function takeDamage( Attack $attack)
     {
 
-        $this->hp = $this->hp - $this->absorbDamage($damage);
+        $this->hp = $this->hp - $this->absorbDamage($attack);
         show("{$this->name} ahora tiene {$this->hp} puntos de vida");
 
 
@@ -47,9 +67,11 @@ abstract class Unit
         exit;
     }
 
-    protected function absorbDamage($damage)
+    protected function absorbDamage(Attack $attack)
     {
-
-        return $damage;
+        if ($this->armor) {
+            return $this->armor->absorbDamage($attack);
+        }
+        return $attack->getDamage();
     }
 }
