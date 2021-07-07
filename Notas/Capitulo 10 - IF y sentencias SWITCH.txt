@@ -1,0 +1,9 @@
+Reducción de uso de condicionales IF y sentencias SWITCH
+
+Cuando trabajamos con programación estructurada, tomamos decisiones en nuestro código utilizando condicionales IF o sentencias SWITCH, pero cuando trabajamos con programación orientada a objetos, podemos desarrollar de manera que sean objetos y no decenas de condicionales o switch / case los que tomen las decisiones sobre cómo se debe procesar nuestro programa. Por ejemplo: cuánto descuento se le debe aplicar a un cliente. Esto lo vamos a ver en la lección de hoy con un par de ejemplos sencillos pero muy útiles y fáciles de entender.
+
+Null object
+Un null object es una especie de placeholder con el cuál podremos evitar tener que preguntar si un objeto está presente o no, dado que el objeto siempre estará presente así la versión del mismo no cause ningún efecto sobre el programa.
+
+Herencia
+Podemos utilizar herencia para colocar los condicionales necesarios dentro de la clase padre y así en las subclases no tendremos más que sobre-escribir los métodos correspondientes. Veremos más sobre esto en una lección siguiente.
